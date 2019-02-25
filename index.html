@@ -8,6 +8,7 @@ Loading Data...
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js">
 </script>
 <script>
+console.log("V1.0.3");
 //Read in dataset
 
 
@@ -15,7 +16,7 @@ Loading Data...
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          console.log(xhttp.responseText);
+          console.log("Data Loaded");
           var dataset=xhttp.responseText.split(",");
           //Render on Chart
             var indices=[];
@@ -50,7 +51,7 @@ Loading Data...
     };
 
 
-
+    //The file to read
     xhttp.open("GET", './data/hundredthousand.csv', true);
     xhttp.send();
 
