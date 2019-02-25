@@ -9,6 +9,11 @@ Loading Data...
 </script>
 <script>
 //Read in dataset
+  xhttp.open("GET", './data/hundredthousand.csv', true);
+  xhttp.send();
+
+
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -45,8 +50,6 @@ Loading Data...
 
         }
     };
-    xhttp.open("GET", './data/million.csv', true);
-    xhttp.send();
 
 
 
