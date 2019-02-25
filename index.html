@@ -1,0 +1,50 @@
+<html>
+<body>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js">
+</script>
+<script>
+//Read in dataset
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(xhttp.responseText);
+          var dataset=xhttp.responseText;
+          //Render on Chart
+            var indices=[];
+            for(var i=0;i<dataset.length;i++){
+              indices.push(i);
+            }
+            var canvas=document.createElement("CANVAS");
+
+            var ctx=canvas.getContext('2d');
+            document.body.appendChild(canvas);
+            canvas.style.width ='80%';
+
+            canvas.width=canvas.offsetWidth;
+            canvas.height=canvas.offsetHeight;
+            //add colors
+            var myChart=new Chart(ctx,{
+                type:'line',
+                data: {
+                    labels:indices,
+                    datasets: [{
+                        data:dataset,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                }
+            });
+
+
+
+        }
+    };
+    xhttp.open("GET", './million.csv', true);
+    xhttp.send();
+
+
+
+</script>
+</html>
