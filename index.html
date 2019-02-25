@@ -1,6 +1,6 @@
 <html>
 <body>
-<h1>
+<h1 id="load">
 Loading Data...
     </h1>
     </body>
@@ -40,12 +40,12 @@ Loading Data...
                 options: {
                 }
             });
-
+            document.getElementById("load").style.display="none";
 
 
         }
     };
-    xhttp.open("GET", './data/hundredthousand.csv', true);
+    xhttp.open("GET", './data/million.csv', true);
     xhttp.send();
 
 
