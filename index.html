@@ -7,12 +7,12 @@ Loading Data...
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js">
 </script>
 <script>
-console.log("V1.0.5");
+console.log("V1.0.7");
 //Read in dataset
 
 //Sampling Size
 //eg 3 renders every 3rd element
-  var sampling=10;
+  var sampling=100;
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -67,7 +67,7 @@ console.log("V1.0.5");
 
 
     //The file to read
-    xhttp.open("GET", './data/hundredthousand.csv', true);
+    xhttp.open("GET", './data/million.csv', true);
     xhttp.send();
 
 
