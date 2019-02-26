@@ -7,7 +7,7 @@ Loading Data...
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js">
 </script>
 <script>
-console.log("V1.0.7");
+console.log("V1.0.8");
 //Read in dataset
 
 //Sampling Size
@@ -33,7 +33,7 @@ console.log("V1.0.7");
         //Render on Chart
         var indices=[];
         for(var i=0;i<dataset.length;i++){
-          indices.push(i);
+          indices.push(i*sampling);
         }
         var canvas=document.createElement("CANVAS");
 
@@ -64,13 +64,16 @@ console.log("V1.0.7");
 
       }
   };
+  var file;
+  if(window.location.search==""){
+    file="hundredthousand.csv";
+  }else{
+    file=window.location.search.substring(1);
+  }
 
-
-    //The file to read
-    xhttp.open("GET", './data/million.csv', true);
-    xhttp.send();
-
-
+  //The file to read
+  xhttp.open("GET",'./data/'+file,true);
+  xhttp.send();
 
 </script>
 </html>
