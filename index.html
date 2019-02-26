@@ -7,7 +7,7 @@ Loading Data...
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js">
 </script>
 <script>
-console.log("V1.0.4");
+console.log("V1.0.5");
 //Read in dataset
 
 //Sampling Size
@@ -23,12 +23,12 @@ console.log("V1.0.4");
         var dataset=[];
 
         //Reduce DataSet
-        for(var i=0;i<dataset.length;i++){
+        for(var i=0;i<data.length;i++){
           if(i%sampling!=0){
             dataset.push(data[i]);
           }
         }
-
+        console.log("Size of Data Set:",dataset.length);
 
         //Render on Chart
         var indices=[];
@@ -54,6 +54,9 @@ console.log("V1.0.4");
                 }]
             },
             options: {
+              legend: {
+                display: false
+              },
             }
         });
         document.getElementById("load").style.display="none";
