@@ -12,7 +12,9 @@ console.log("V1.0.8");
 
 //Sampling Size
 //eg 3 renders every 3rd element
-  var sampling=100;
+  var sampling=10;
+
+
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -20,7 +22,15 @@ console.log("V1.0.8");
         console.log("Data Loaded");
         var data=xhttp.responseText.split(",");
 
+        if(data.length>100000){
+          sampling=100;
+        }
+        if(data.length>1000000){
+          sampling=1000;
+        }
         var dataset=[];
+
+
 
         //Reduce DataSet
         for(var i=0;i<data.length;i++){
