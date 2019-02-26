@@ -11,7 +11,7 @@ console.log("V1.0.5");
 //Read in dataset
 
 //Sampling Size
-//eg 3 removes every 3rd element
+//eg 3 renders every 3rd element
   var sampling=10;
 
   var xhttp = new XMLHttpRequest();
@@ -24,7 +24,7 @@ console.log("V1.0.5");
 
         //Reduce DataSet
         for(var i=0;i<data.length;i++){
-          if(i%sampling!=0){
+          if(i%sampling==0){
             dataset.push(data[i]);
           }
         }
