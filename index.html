@@ -2,53 +2,65 @@
 <body>
 <h1 id="load">
 Loading Data...
-    </h1>
-    </body>
-
+</h1>
+</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js">
 </script>
 <script>
-console.log("V1.0.3");
+console.log("V1.0.4");
 //Read in dataset
 
+//Sampling Size
+//eg 3 removes every 3rd element
+  var sampling=10;
 
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log("Data Loaded");
+        var data=xhttp.responseText.split(",");
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          console.log("Data Loaded");
-          var dataset=xhttp.responseText.split(",");
-          //Render on Chart
-            var indices=[];
-            for(var i=0;i<dataset.length;i++){
-              indices.push(i);
-            }
-            var canvas=document.createElement("CANVAS");
+        var dataset=[];
 
-            var ctx=canvas.getContext('2d');
-            document.body.appendChild(canvas);
-            canvas.style.width ='80%';
-
-            canvas.width=canvas.offsetWidth;
-            canvas.height=canvas.offsetHeight;
-            //add colors
-            var myChart=new Chart(ctx,{
-                type:'line',
-                data: {
-                    labels:indices,
-                    datasets: [{
-                        data:dataset,
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                }
-            });
-            document.getElementById("load").style.display="none";
-
-
+        //Reduce DataSet
+        for(var i=0;i<dataset.length;i++){
+          if(i%sampling!=0){
+            dataset.push(data[i]);
+          }
         }
-    };
+
+
+        //Render on Chart
+        var indices=[];
+        for(var i=0;i<dataset.length;i++){
+          indices.push(i);
+        }
+        var canvas=document.createElement("CANVAS");
+
+        var ctx=canvas.getContext('2d');
+        document.body.appendChild(canvas);
+        canvas.style.width ='80%';
+
+        canvas.width=canvas.offsetWidth;
+        canvas.height=canvas.offsetHeight;
+        //add colors
+        var myChart=new Chart(ctx,{
+            type:'line',
+            data: {
+                labels:indices,
+                datasets: [{
+                    data:dataset,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+            }
+        });
+        document.getElementById("load").style.display="none";
+
+
+      }
+  };
 
 
     //The file to read
