@@ -20,17 +20,29 @@ console.log("V1.0.8");
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         console.log("Data Loaded");
-        var data=xhttp.responseText.split(",");
+        var raw=xhttp.responseText.split("\n");
+        var data=raw.map(
+          function(str){
+              return str.split(",")[1];
+          }
+        );
+        var indices=raw.map(
+          function(str){
+              return str.split(",")[0];
+          }
+        );
+        var sampleSize=1;
+        while(sampleSize<data.length){
+          sampleSize*=10;
+        }
+        sampling=sampleSize/1000
+        if(sampling<1){
+          sampling=1;
+        }
 
-        if(data.length>100000){
-          sampling=100;
-        }
-        if(data.length>1000000){
-          sampling=1000;
-        }
+
+        //DataSet to render
         var dataset=[];
-
-
 
         //Reduce DataSet
         for(var i=0;i<data.length;i++){
@@ -41,11 +53,17 @@ console.log("V1.0.8");
         console.log("Size of Data Set:",dataset.length);
 
         //Render on Chart
-        var indices=[];
-        for(var i=0;i<dataset.length;i++){
-          indices.push(i*sampling);
-        }
         var canvas=document.createElement("CANVAS");
+
+        canvas.addEventListener('wheel', function(e) {
+          if (e.deltaY < 0) {
+            console.log('scrolling up');
+          }
+          if (e.deltaY > 0) {
+            console.log('scrolling down');
+          }
+        });
+
 
         var ctx=canvas.getContext('2d');
         document.body.appendChild(canvas);
