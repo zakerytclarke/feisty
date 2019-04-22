@@ -1,4 +1,4 @@
-var n=1000000;
+var n=1000000000;
 var c=Math.random()*100;
 var v=Math.random()*10;
 
